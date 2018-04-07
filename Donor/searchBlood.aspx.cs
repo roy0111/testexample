@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+
 
 namespace BloodBankWithUnitTesting.Donor
 {
@@ -51,6 +54,112 @@ namespace BloodBankWithUnitTesting.Donor
                 return false;
             }
             
+        }
+
+
+
+        public bool CheckBloodGroupDonorAvailableOrNot(string bloodGroup)
+        {
+            try
+            {
+                SqlConnection sqlconn = new SqlConnection("Data Source=DESKTOP-IOODRMA;Initial Catalog=bloodBank;Integrated Security=True;");
+                sqlconn.Open();
+
+                string query1 = "select * from user_profile_info where bloodGroup='" + bloodGroup + "'";
+                SqlCommand sql1 = new SqlCommand(query1, sqlconn);
+                SqlDataReader sqldata = sql1.ExecuteReader();
+
+
+
+                // bool row = true ;
+
+                // int user =12;
+                while (sqldata.Read())
+                {
+                    sqlconn.Close();
+                    //Response.Write("<script>alert('" + userMail + " ');</script>");
+                    return true;
+                }
+
+                return false;
+
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+            //return false;
+        }
+
+
+        public bool CheckAreaAvailableOrNot(string area)
+        {
+            try
+            {
+                SqlConnection sqlconn = new SqlConnection("Data Source=DESKTOP-IOODRMA;Initial Catalog=bloodBank;Integrated Security=True;");
+                sqlconn.Open();
+
+                string query1 = "select * from user_profile_info where userAddress='" + area + "'";
+                SqlCommand sql1 = new SqlCommand(query1, sqlconn);
+                SqlDataReader sqldata = sql1.ExecuteReader();
+
+
+
+                // bool row = true ;
+
+                // int user =12;
+                while (sqldata.Read())
+                {
+                    sqlconn.Close();
+                    //Response.Write("<script>alert('" + userMail + " ');</script>");
+                    return true;
+                }
+
+                return false;
+
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+            //return false;
+        }
+
+
+        public bool CheckBloodAvailableInParticulerAreaOrNot(string bloodgroup, string area)
+        {
+            try
+            {
+                SqlConnection sqlconn = new SqlConnection("Data Source=DESKTOP-IOODRMA;Initial Catalog=bloodBank;Integrated Security=True;");
+                sqlconn.Open();
+
+                string query1 = "select * from user_profile_info where userAddress='" + area + "' AND bloodGroup= '"+ bloodgroup + "'";
+                SqlCommand sql1 = new SqlCommand(query1, sqlconn);
+                SqlDataReader sqldata = sql1.ExecuteReader();
+
+
+
+                // bool row = true ;
+
+                // int user =12;
+                while (sqldata.Read())
+                {
+                    sqlconn.Close();
+                    //Response.Write("<script>alert('" + userMail + " ');</script>");
+                    return true;
+                }
+
+                return false;
+
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+            //return false;
         }
 
 
