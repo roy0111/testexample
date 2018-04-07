@@ -39,7 +39,7 @@ namespace bloodbankTestingNamespace.Tests
         public void CheckoldPasswordTestCase()
         {
             string usermail = "birat0111@gmail.com";
-            string userOldPassWord = "12365456789";
+            string userOldPassWord = "123456789";
             bool result = obj.CheckOldPassowordExistance(usermail, userOldPassWord);
             bool expectedResult = true;
             Assert.AreEqual(expectedResult, result);
@@ -49,10 +49,10 @@ namespace bloodbankTestingNamespace.Tests
         [Test()]//test case 4
         public void UpdatePassordTestCase()
         {
-            string usermail = "birat0111@gmail.com";
-            string user_NewPassword = "123456789";
+            string usermail = "birat@gmail.com";
+            string user_NewPassword = "8888888888";
             bool result = obj.UpdatePasswordFunction(usermail, user_NewPassword);
-            bool expectedResult = false;
+            bool expectedResult = true;
             Assert.AreEqual(expectedResult, result);
         }
     }
