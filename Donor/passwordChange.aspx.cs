@@ -80,17 +80,15 @@ namespace BloodBankWithUnitTesting.Donor
         {
             try
             {
-                //Response.Write("<script>alert('" + 77777777777 + " ');</script>");
-                DataClassesDataContext dbConn = new DataClassesDataContext();
-                var user = (from usr in dbConn.user_logins
-                           where usr.user_mail == mail
-                           select usr).Single();
-             
-                user.user_pass = newPassword;
-                
-                dbConn.SubmitChanges();
-                dbConn.Connection.Close();
-                
+
+                SqlConnection sqlconn = new SqlConnection("Data Source=DESKTOP-IOODRMA;Initial Catalog=bloodBank;Integrated Security=True;");
+                sqlconn.Open();
+
+                string query1 = "update user_login set user_pass='"+ newPassword + "'  where user_mail= '" + mail + "'" ;
+                SqlCommand sql1 = new SqlCommand(query1, sqlconn);
+                sql1.ExecuteNonQuery();
+            
+                sqlconn.Close();
                 return true;
 
             }
