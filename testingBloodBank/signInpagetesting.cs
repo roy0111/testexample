@@ -28,9 +28,18 @@ namespace testingBloodBank
         public void UserPasswordValidity()
         {
             string password = "123456789";
-            string mail = "birat@gmail.com";
-            bool result = obj.ValidateUserMailPasswordExistance(mail,password);
-            bool expectedResult = false;
+            string mail = "birat0111@gmail.com";
+            bool result = obj.MatchUserMailPasswordExistance(mail,password);
+            bool expectedResult = true;
+            Assert.AreEqual(expectedResult, result);
+        }
+
+        [Test]
+        public void UserMailExistanceValidity()
+        {
+            string mail = "birat0111@gmail.com";
+            bool result = obj.ValidateUserMailExistance(mail);
+            bool expectedResult = true;
             Assert.AreEqual(expectedResult, result);
         }
     }
